@@ -2,6 +2,10 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 
+function Welcome(props: any) {
+  return <h1>Hello, {props.name}</h1>;
+}
+
 function App() {
   return (
     <div className="App">
@@ -18,6 +22,9 @@ function App() {
         >
           Learn React
         </a>
+        <Welcome name="Bartek" />
+        <Welcome name="Szymon" />
+        <Welcome name="Dawid" />
       </header>
     </div>
   );
