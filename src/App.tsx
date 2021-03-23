@@ -2,6 +2,41 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 
+interface State {
+  date: Date;
+}
+
+class Clock extends React.Component {
+  state: Readonly<State> = { date: new Date() };
+  timerId!: NodeJS.Timeout;
+
+  componentDidMount() {
+    this.timerId = setInterval(
+      () => this.tick(),
+      1000
+    );
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.timerId);
+  }
+
+  tick() {
+    console.log(this.timerId)
+    this.setState({
+      date: new Date()
+    });
+  }
+
+  render() {
+    return (
+      <div>
+        <h2>It is {this.state.date.toLocaleTimeString()}</h2>
+      </div>
+    )
+  }
+}
+
 function UserInfo(props: any) {
   return (
     <div className="UserInfo">
@@ -32,6 +67,7 @@ function Comment(props: any) {
       <div className="Comment-date">
         {props.date.toLocaleDateString()}
       </div>
+      <Clock />
     </div>
   );
 }
